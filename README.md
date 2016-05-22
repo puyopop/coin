@@ -1,3 +1,6 @@
+## rimeの使い方
+[rime 1.0 documentation](http://nya3jp.github.io/rime/)
+
 # コイン集めゲーム
 ## 問題概要
 プレーヤーを動かしマップ上のコインを全て集めるゲームを行います．
