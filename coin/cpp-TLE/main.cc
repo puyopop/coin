@@ -17,47 +17,6 @@ int Y[MAXN];
 int dp[1 << MAXN];
 int H, W, N;
 
-
-void debug(){
-  REP(x, H){
-    REP(y, W){
-      if(field[x][y] >= INF){
-        cout << "#";
-      }
-      else{
-        cout << field[x][y];
-      }
-    }
-    cout << endl;
-  }
-  cout << endl;
-  REP(x, H){
-    REP(y, W){
-      char tmp = '.';
-      REP(i, N){
-        if(X[i] == x && Y[i] == y){
-          tmp = '@';
-        }
-      }
-      cout << tmp;
-    }
-    cout << endl;
-  }
-  cout << endl;
-}
-
-void debug_table(){
-  REP(a, H){
-    REP(b, W){
-      REP(c, H){
-        REP(d, W){
-          cout << "(" << a << ", " << b << ") -> (" << c << ", " << d << ") :" << table[a][b][c][d] << endl;
-        }
-      }
-    }
-  }
-}
-
 int main() {
   cin >> H >> W;
   REP(i, H){

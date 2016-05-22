@@ -25,34 +25,6 @@ int Y[MAXN];
 int dp[1 << MAXN];
 int H, W, N;
 
-void debug(){
-  REP(x, H){
-    REP(y, W){
-      if(field[x][y] >= INF){
-        cout << "#";
-      }
-      else{
-        cout << field[x][y];
-      }
-    }
-    cout << endl;
-  }
-  cout << endl;
-  REP(x, H){
-    REP(y, W){
-      char tmp = '.';
-      REP(i, N){
-        if(X[i] == x && Y[i] == y){
-          tmp = '@';
-        }
-      }
-      cout << tmp;
-    }
-    cout << endl;
-  }
-  cout << endl;
-}
-
 VI pickup(VII costs){
   VI ret;
   REP(i, N){
