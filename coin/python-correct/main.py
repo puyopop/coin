@@ -50,11 +50,3 @@ for bit in range(1 << N):
       dp[bit | (1 << d)][d] = min(dp[bit | (1 << d)][d], dp[bit][s] + table[s][d])
 ans = min(dp[(1 << N) - 1])
 print(ans if ans is not INF else -1)
-
-
-    
-    
-    
-            
-
-
