@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
 #define FOR(i,a,b) for(int i=(a);i<(b);++i)
 #define REP(i,n)  FOR(i,0,n)
 
@@ -14,7 +16,6 @@ int field[MAXH][MAXW];
 int table[MAXH][MAXW][MAXH][MAXW];
 int X[MAXN];
 int Y[MAXN];
-int dp[1 << MAXN];
 int H, W, N;
 
 int main() {
@@ -37,7 +38,6 @@ int main() {
     --X[i];
     --Y[i];
   }
-  // debug();
 
   REP(a, H){
     REP(b, W){
@@ -76,34 +76,26 @@ int main() {
     }
   }
 
-  // debug_table();
-
-  REP(bit, (1<<N)){    
-    dp[bit] = INF;
+  int ans = INF;
+  vector<int> perm(N);
+  for(int i = 0; i < N; ++i){
+    perm[i] = i;
   }
-  REP(i, N){
-    dp[1<<i] = 0;
-  }
-  REP(bit, (1<<N)){    
-    REP(s, N){
-      if(((bit >> s) & 1) == 0){
-        continue;
-      }
-      REP(d, N){
-        dp[bit|(1 << d)] = min(dp[bit|(1 << d)], dp[bit] + table[X[s]][Y[s]][X[d]][Y[d]]);
-      }
+  do{
+    int tmp = 0;    
+    for(int i = 0; i < (N - 1); ++i){
+      int from = perm[i];
+      int to = perm[i+1];
+      tmp += table[X[from]][Y[from]][X[to]][Y[to]];
     }
-  }
-  // cout << "N=" << N << endl;
-  // REP(bit, (1 << N)){
-  //   cout << bit << ": " << dp[bit] << endl;
-  // }
-  int ans = dp[(1 << N) - 1];
+    ans = min(ans, tmp);
+  }while(next_permutation(perm.begin(), perm.end()));
+
   if(ans >= INF){
     cout << -1 << endl;
   }
   else{
-    cout << dp[(1 << N) - 1] << endl;
+    cout << ans << endl;
   }
   return 0;
 }
