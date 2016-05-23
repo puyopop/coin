@@ -5,7 +5,7 @@
 using namespace std;
 const int MAXH = 100;
 const int MAXW = 100;
-const int MAXN = 10;
+const int MAXN = 14;
 const int INF = 1 << 22;
 const int DX[4] = {-1, 1, 0, 0};
 const int DY[4] = {0, 0, -1, 1};
