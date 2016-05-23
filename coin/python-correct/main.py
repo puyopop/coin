@@ -37,9 +37,9 @@ def djikstra(startx_starty):
 
 table = list(map(djikstra, XY))
 # print(*table, sep="\n")
-dp = [INF] * (1 << N)
+dp = [[INF] * N for _ in range(1 << N)]
 for i in range(N):
-  dp[1 << i] = 0
+  dp[1 << i][i] = 0
 for bit in range(1 << N):
   for s in range(N):
     if ((bit >> s) & 1) == 0:
@@ -47,9 +47,9 @@ for bit in range(1 << N):
     for d in range(N):
       if ((bit >> d) & 1):
         continue
-      dp[bit | (1 << d)] = min(dp[bit | (1 << d)], dp[bit] + table[s][d])
-print(dp[(1 << N) - 1] if dp[(1 << N) - 1] < INF else -1)
-
+      dp[bit | (1 << d)][d] = min(dp[bit | (1 << d)][d], dp[bit][s] + table[s][d])
+ans = min(dp[(1 << N) - 1])
+print(ans if ans is not INF else -1)
 
 
     

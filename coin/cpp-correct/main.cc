@@ -22,7 +22,7 @@ int field[MAXH][MAXW];
 int table[MAXH][MAXW][MAXH][MAXW];
 int X[MAXN];
 int Y[MAXN];
-int dp[1 << MAXN];
+int dp[1 << MAXN][MAXN];
 int H, W, N;
 
 VI pickup(VII costs){
@@ -91,23 +91,30 @@ int main() {
     costs.push_back(pickup(dijkstra(X[i], Y[i])));
   }
 
-  REP(bit, (1<<N)){    
-    dp[bit] = INF;
+  REP(bit, (1<<N)){
+    REP(i, N){
+      dp[bit][i] = INF;
+    }
   }
   REP(i, N){
-    dp[1<<i] = 0;
+    dp[1<<i][i] = 0;
   }
+
   REP(bit, (1<<N)){    
     REP(s, N){
       if(((bit >> s) & 1) == 0){
         continue;
       }
       REP(d, N){
-        dp[bit|(1 << d)] = min(dp[bit|(1 << d)], dp[bit] + costs[s][d]);
+        dp[bit|(1 << d)][d] = min(dp[bit|(1 << d)][d], 
+                                  dp[bit][s] + costs[d][s]);
       }
     }
+  }  
+  int ans = INF;
+  REP(i, N){
+    ans = min(ans, dp[(1 << N) - 1][i]);
   }
-  int ans = dp[(1 << N) - 1];
   if(ans >= INF){
     cout << -1 << endl;
   }
