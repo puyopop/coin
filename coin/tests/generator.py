@@ -4,7 +4,7 @@ from random import randrange, seed
 
 MAXH = 100
 MAXW = 100
-MAXN = 10
+MAXN = 14
 SMALLH = 10
 SMALLW = 10
 SMALLN = 5

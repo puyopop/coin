@@ -5,7 +5,7 @@ import sys
 
 MAXH = 100
 MAXW = 100
-MAXN = 10
+MAXN = 14
 
 
 def main():
